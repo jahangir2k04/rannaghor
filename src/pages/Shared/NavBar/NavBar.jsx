@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
+import { FaUserCircle } from 'react-icons/fa';
 
 const NavBar = () => {
 
@@ -9,7 +10,7 @@ const NavBar = () => {
     const handleLogOut = () => {
         logOut()
             .then()
-            .catch(error => console.log(error.message))
+            .catch()
     }
 
     return (
@@ -20,15 +21,15 @@ const NavBar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 my-primary font-semibold ">
-                    <Link to='/'>Home</Link>
-                    <Link tabIndex={0} to='/about'>About</Link>
-                    <Link to='/blog'>Blog</Link>
+                        <Link to='/'>Home</Link>
+                        <Link tabIndex={0} to='/about'>About</Link>
+                        <Link to='/blog'>Blog</Link>
                     </ul>
                 </div>
                 <Link to='/' className="flex normal-case text-3xl font-bold my-primary">
-                    RannaGh
-                    <img className='h-8' src="/public/logo.png" alt="Site Logo" />
-                    r
+                    <span>RannaGh</span>
+                    <img className='h-8' src="/logo.png" alt="site logo---" />
+                    <span>r</span>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -39,11 +40,14 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                {user && <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 me-1 rounded-full">
-                        <img src="/public/logo.png" />
+                {user &&
+                    <div className="w-12 me-1 rounded-full">
+                        { user.photoURL ?
+                            <img className='h-12 rounded-full' src={user.photoURL} alt="" title={user.displayName}/> :
+                            <FaUserCircle className='w-12 h-12' title='User Name'/>
+                        }
                     </div>
-                </label>
+
                 }
                 {user ?
                     <button onClick={handleLogOut} className='my-bg-primary my-hover px-3 md:px-6 py-1 md:py-2 text-2xl text-white font-semibold rounded-lg'>Logout</button> :

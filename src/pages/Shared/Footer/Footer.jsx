@@ -22,16 +22,16 @@ const Footer = () => {
                 <div>
                     <span className="footer-title">Social</span>
                     <div className="grid grid-flow-col gap-4">
-                        <Link><img className='h-12' src="/src/assets/Facebook-logo.png" alt="" /></Link>
-                        <Link><img className='h-12' src="/src/assets/twitter.png" alt="" /></Link>
-                        <Link><img className='h-12' src="/src/assets/youtube.png" alt="" /></Link>
+                        <Link><img className='h-12' src="/Facebook-logo.png" alt="" /></Link>
+                        <Link><img className='h-12' src="/twitter.png" alt="" /></Link>
+                        <Link><img className='h-12' src="/youtube.png" alt="" /></Link>
 
                     </div>
                 </div>
                 
             </footer>
             <div className="flex items-center justify-center mt-8">
-                <img className='h-12 me-1' src="/public/logo.png" alt="" />
+                <img className='h-12 me-1' src="/logo.png" alt="" />
                 <p>
                     <span className=' text-red-600 text-lg'>Copyright © 2023 - All right reserved By</span>
                     <Link className='my-primary text-xl font-bold' to='/'>  RannaGhor</Link>

@@ -4,7 +4,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const [error, setError] = useState('');
     const [accepted, setAccepted] = useState(false);
     const navigate = useNavigate();
@@ -15,11 +15,11 @@ const Register = () => {
 
         const form = event.target;
         const name = form.name.value;
-        const photourl = form.photourl.valur;
+        const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
 
-        if(!/(?=.*[A-Z])(?=.*[@$!%*?&]){8,}/.test(password)){
+        if (!/(?=.*[A-Z])(?=.*[@$!%*?&]){8,}/.test(password)) {
             setError('Password must be 8 characters with one uppercase letter and special character.');
             return;
         }
@@ -28,7 +28,12 @@ const Register = () => {
             .then(result => {
                 const createdUser = result.user;
                 // console.log(createdUser);
-                navigate('/')
+                navigate('/');
+                updateUserProfile(createdUser, name, photo)
+                    .then()
+                    .catch(error => {
+                        setError(error.message);
+                    })
             })
             .catch(error => {
                 setError(error.message);
@@ -50,7 +55,7 @@ const Register = () => {
                 </div>
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Photo Url</label> <br />
-                    <input className='mt-2 ps-3 border rounded border-slate-400 h-12 w-full' type="photourl" name="photourl" />
+                    <input className='mt-2 ps-3 border rounded border-slate-400 h-12 w-full' type="photo" name="photo" />
                 </div>
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Email</label> <br />
@@ -62,9 +67,9 @@ const Register = () => {
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox" onClick={handleAccepted}/>
+                        <input type="checkbox" onClick={handleAccepted} />
                         <span className='ms-2 text-xl'>
-                        {<>Accept <Link className='my-primary'>Terms and Condition</Link></>}
+                            {<>Accept <Link className='my-primary'>Terms and Condition</Link></>}
                         </span>
                     </label>
                     <p className='mb-8 text-red-800'>{error}</p>
@@ -78,11 +83,11 @@ const Register = () => {
             </div>
             <div className='flex gap-5 mb-10'>
                 <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
-                    <img className='h-10' src="/src/assets/google.png" alt="" />
+                    <img className='h-10' src="/google.png" alt="" />
                     <button className='h-12 my-primary font-bold text-xl'>Google</button>
                 </Link>
                 <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
-                    <img className='h-10' src="/src/assets/github.png" alt="" />
+                    <img className='h-10' src="/github.png" alt="" />
                     <button className='h-12 my-primary font-bold text-xl'>Github</button>
                 </Link>
             </div>
