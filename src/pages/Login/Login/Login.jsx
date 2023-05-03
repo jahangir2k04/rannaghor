@@ -4,7 +4,7 @@ import { AuthContext } from '../../../providers/AuthProvider';
 
 const Login = () => {
 
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
@@ -22,6 +22,28 @@ const Login = () => {
                 // console.log(loggedUser);
                 navigate('/');
 
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+            .then(result => {
+                const signInUser = result.user;
+                navigate('/');
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+    }
+
+    const handleGithubSignIn = () => {
+        githubSignIn()
+            .then(result => {
+                const signInUser = result.user;
+                navigate('/');
             })
             .catch(error => {
                 setError(error.message);
@@ -49,7 +71,7 @@ const Login = () => {
                     </label>
                     <Link className='my-primary text-xl font-semibold'>Forgot password?</Link>
                 </div>
-                    <p className='mb-8 text-red-800'>{error}</p>
+                <p className='mb-8 text-red-800'>{error}</p>
                 <input className='w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Login" />
             </form>
             <div className='my-10 text-center grid grid-cols-3 items-center'>
@@ -58,11 +80,11 @@ const Login = () => {
                 <hr />
             </div>
             <div className='flex gap-5 mb-10'>
-                <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
+                <Link onClick={handleGoogleSignIn} className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
                     <img className='h-10' src="/src/assets/google.png" alt="" />
                     <button className='h-12 my-primary font-bold text-xl'>Google</button>
                 </Link>
-                <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
+                <Link onClick={handleGithubSignIn} className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
                     <img className='h-10' src="/src/assets/github.png" alt="" />
                     <button className='h-12 my-primary font-bold text-xl'>Github</button>
                 </Link>
