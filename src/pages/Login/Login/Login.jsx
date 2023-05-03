@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const Login = () => {
     return (
-        <div className='mb-10 rounded-lg border-slate-400 w-2/5 mx-auto p-12 shadow-lg'>
-            <h3 className='mb-6 text-4xl font-bold text-center'>Please Login</h3>
+        <div className='mx-4 mb-10 rounded-lg border-slate-400 md:w-2/5 md:mx-auto p-6 md:p-12 shadow-lg'>
+            <h3 className='mb-6 text-3xl md:text-4xl font-bold text-center'>Please Register</h3>
             <form >
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Email</label> <br />
@@ -20,24 +20,24 @@ const Login = () => {
                         <span className='ms-2 text-xl'>
                             Show password
                         </span>
-                    </label> 
+                    </label>
                     <Link className='my-primary text-xl font-semibold'>Forgot password?</Link>
                 </div>
                 <input className='w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Login" />
             </form>
             <div className='my-10 text-center grid grid-cols-3 items-center'>
-                 <hr />
-                 <p className='text-xl'>Or continue with</p>
-                 <hr />
+                <hr />
+                <p className='text-xl'>Or continue with</p>
+                <hr />
             </div>
             <div className='flex gap-5 mb-10'>
-                <Link className='flex gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
+                <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
                     <img className='h-10' src="/src/assets/google.png" alt="" />
                     <button className='h-12 my-primary font-bold text-xl'>Google</button>
                 </Link>
-                <Link className='flex gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
-                    <img className='h-10' src="/src/assets/twitter.png" alt="" />
-                    <button className='h-12 my-primary font-bold text-xl'>Twitter</button>
+                <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
+                    <img className='h-10' src="/src/assets/github.png" alt="" />
+                    <button className='h-12 my-primary font-bold text-xl'>Github</button>
                 </Link>
             </div>
             <p className='text-center text-xl'>
@@ -48,3 +48,4 @@ const Login = () => {
 };
 
 export default Login;
+
