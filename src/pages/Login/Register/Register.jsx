@@ -1,37 +1,75 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Register = () => {
+
+    const { createUser } = useContext(AuthContext);
+    const [error, setError] = useState('');
+    const [accepted, setAccepted] = useState(false);
+    const navigate = useNavigate();
+
+    const handleRegister = event => {
+        event.preventDefault();
+        setError('');
+
+        const form = event.target;
+        const name = form.name.value;
+        const photourl = form.photourl.valur;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        if(!/(?=.*[A-Z])(?=.*[@$!%*?&]){8,}/.test(password)){
+            setError('Password must be 8 characters with one uppercase letter and special character.');
+            return;
+        }
+
+        createUser(email, password)
+            .then(result => {
+                const createdUser = result.user;
+                // console.log(createdUser);
+                navigate('/')
+            })
+            .catch(error => {
+                setError(error.message);
+            })
+
+    }
+
+    const handleAccepted = event => {
+        setAccepted(event.target.checked);
+    }
+
     return (
         <div className='mx-4 mb-10 rounded-lg border-slate-400 md:w-2/5 md:mx-auto p-6 md:p-12 shadow-lg'>
             <h3 className='mb-6 text-3xl md:text-4xl font-bold text-center'>Please Register</h3>
-            <form >
+            <form onSubmit={handleRegister}>
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Your Name</label> <br />
-                    <input className='mt-2 border rounded border-slate-400 h-12 w-full' type="text" name="name" required />
+                    <input className='mt-2 ps-3 border rounded border-slate-400 h-12 w-full' type="text" name="name" required />
                 </div>
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Photo Url</label> <br />
-                    <input className='mt-2 border rounded border-slate-400 h-12 w-full' type="photourl" name="photourl" required />
+                    <input className='mt-2 ps-3 border rounded border-slate-400 h-12 w-full' type="photourl" name="photourl" />
                 </div>
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Email</label> <br />
-                    <input className='mt-2 border rounded border-slate-400 h-12 w-full' type="email" name="email" required />
+                    <input className='mt-2 ps-3 border rounded border-slate-400 h-12 w-full' type="email" name="email" required />
                 </div>
-                <div className='text-xl mb-5'>
+                <div className='text-xl mb-4'>
                     <label htmlFor="">Password</label> <br />
-                    <input className='mt-2 border rounded border-slate-400 h-12 w-full' type="password" name="password" required />
+                    <input className='mt-2 ps-3 border rounded border-slate-400 h-12 w-full' type="password" name="password" required />
                 </div>
-                <div className='flex mb-8'>
-                    <label className='grow'>
-                        <input type="checkbox" />
+                <div>
+                    <label>
+                        <input type="checkbox" onClick={handleAccepted}/>
                         <span className='ms-2 text-xl'>
-                            Show password
+                        {<>Accept <Link className='my-primary'>Terms and Condition</Link></>}
                         </span>
                     </label>
-                    
+                    <p className='mb-8 text-red-800'>{error}</p>
                 </div>
-                <input className='w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Register" />
+                <input className='w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Register" disabled={!accepted} />
             </form>
             <div className='my-10 text-center grid grid-cols-3 items-center'>
                 <hr />
