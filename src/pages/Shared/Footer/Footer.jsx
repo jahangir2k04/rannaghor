@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='px-2 py-4 md:p-10 bg-success text-success-content '>
+        <div className='px-2 py-4 md:px-24 md:py-10 bg-success text-success-content '>
             <footer className="footer ">
                 <div>
                     <span className="footer-title">Services</span>

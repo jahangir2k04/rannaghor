@@ -1,11 +1,12 @@
 import React from 'react';
 import Header from '../Header/Header';
+import Chefs from '../Chefs/Chefs';
 
 const Home = () => {
     return (
         <div>
             <Header></Header>
-            <h3>Welcome to RannaGhor</h3>
+            <Chefs></Chefs>
         </div>
     );
 };
