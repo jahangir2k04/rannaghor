@@ -33,10 +33,10 @@ const AuthProvider = ({children}) => {
     }
 
     const updateUserProfile = (user, name, photo) => {
-        updateProfile(user, {
+        return updateProfile(user, {
             displayName: name,
             photoURL: photo,
-        })
+        });
     }
 
     const logOut = () => {

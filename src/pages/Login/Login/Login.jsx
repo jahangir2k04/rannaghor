@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
 const Login = () => {
@@ -7,6 +7,8 @@ const Login = () => {
     const { signIn, googleSignIn, githubSignIn } = useContext(AuthContext);
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = event => {
         event.preventDefault();
@@ -20,7 +22,7 @@ const Login = () => {
             .then(result => {
                 const loggedUser = result.user;
                 // console.log(loggedUser);
-                navigate('/');
+                navigate(from, {replace: true});
 
             })
             .catch(error => {
@@ -29,10 +31,11 @@ const Login = () => {
     }
 
     const handleGoogleSignIn = () => {
+        setError('');
         googleSignIn()
             .then(result => {
                 const signInUser = result.user;
-                navigate('/');
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 setError(error.message);
@@ -40,10 +43,11 @@ const Login = () => {
     }
 
     const handleGithubSignIn = () => {
+        setError('');
         githubSignIn()
             .then(result => {
                 const signInUser = result.user;
-                navigate('/');
+                navigate(from, {replace: true});
             })
             .catch(error => {
                 setError(error.message);
