@@ -5,6 +5,8 @@ import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import ChefRecipes from "../pages/ChefRecipes/ChefRecipes";
 import PrivateRoute from "./PrivateRoute";
+import About from "../pages/About/About";
+import Blog from "../pages/Blog/Blog";
 
 
 const router = createBrowserRouter([
@@ -19,7 +21,15 @@ const router = createBrowserRouter([
             {
                 path: '/chef-recipes/:id',
                 element: <PrivateRoute><ChefRecipes></ChefRecipes></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/chef-recipes/${params.id}`)
+                loader: ({params}) => fetch(`https://b7a10-chef-recipe-hunter-server-side-jahangir2k04-jahangir2k04.vercel.app/chef-recipes/${params.id}`)
+            },
+            {
+                path: 'about',
+                element: <About></About>
+            },
+            {
+                path: 'blog',
+                element: <Blog></Blog>,
             },
             {
                 path: 'login',

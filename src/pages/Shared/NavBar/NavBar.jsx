@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 import { FaUserCircle } from 'react-icons/fa';
 
@@ -33,18 +33,24 @@ const NavBar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1 text-xl font-semibold my-primary">
-                    <Link to='/'>Home</Link>
-                    <Link className='mx-6' tabIndex={0} to='/about'>About</Link>
-                    <Link to='/blog'>Blog</Link>
+                <ul className="menu menu-horizontal px-1 text-xl font-semibold">
+                    <NavLink to='/'
+                        className={({ isActive }) => isActive ? 'my-primary' : ''}
+                    >Home</NavLink>
+                    <NavLink tabIndex={0} to='/about'
+                        className={({ isActive }) => isActive ? 'my-primary mx-6' : 'mx-6'}
+                    >About</NavLink>
+                    <NavLink to='/blog'
+                        className={({ isActive }) => isActive ? 'my-primary' : ''}
+                    >Blog</NavLink>
                 </ul>
             </div>
             <div className="navbar-end">
                 {user &&
                     <div className="w-12 me-1 rounded-full">
-                        { user.photoURL ?
-                            <img className='h-12 rounded-full' src={user.photoURL} alt="" title={user.displayName}/> :
-                            <FaUserCircle className='w-12 h-12' title='User Name'/>
+                        {user.photoURL ?
+                            <img className='h-12 rounded-full' src={user.photoURL} alt="" title={user.displayName} /> :
+                            <FaUserCircle className='w-12 h-12' title='User Name' />
                         }
                     </div>
 
