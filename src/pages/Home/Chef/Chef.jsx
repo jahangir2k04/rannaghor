@@ -19,7 +19,7 @@ const Chef = ({ chef }) => {
                 }
             </p>
             <p className='font-semibold mb-1'>Number of Recipes : {recipes_num}+</p>
-            <div className='flex gap-2 items-center text-base font-semibold'><span>Likes : {likes}</span> <FaThumbsUp />
+            <div className='flex gap-2 items-center text-base font-semibold'><span>Likes : {likes}</span> <FaThumbsUp className='text-green-700'/>
             </div>
             <Link to={`/chef-recipes/${chef_id}`}>
                 <button className='mt-5 w-72 py-2 my-bg-primary my-hover text-xl text-white font-semibold rounded-lg'>View Recipes</button>

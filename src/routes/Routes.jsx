@@ -7,12 +7,14 @@ import ChefRecipes from "../pages/ChefRecipes/ChefRecipes";
 import PrivateRoute from "./PrivateRoute";
 import About from "../pages/About/About";
 import Blog from "../pages/Blog/Blog";
+import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',

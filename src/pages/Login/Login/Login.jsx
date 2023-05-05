@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider';
 
@@ -9,6 +9,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || '/';
+    const passwordRef = useRef();
 
     const handleLogin = event => {
         event.preventDefault();
@@ -54,6 +55,17 @@ const Login = () => {
             })
     }
 
+    const handleShowPassword = () => {
+        const passwordType = passwordRef.current.type;
+        // console.log(passwordType);
+        if(passwordType === 'password'){
+            passwordRef.current.type = 'text';
+        }
+        else{
+            passwordRef.current.type = 'password';
+        }
+    }
+
     return (
         <div className='mx-4 mb-10 rounded-lg border-slate-400 md:w-2/5 md:mx-auto p-6 md:p-12 shadow-lg'>
             <h3 className='mb-6 text-3xl md:text-4xl font-bold text-center'>Please Login</h3>
@@ -64,16 +76,16 @@ const Login = () => {
                 </div>
                 <div className='text-xl mb-5'>
                     <label htmlFor="">Password</label> <br />
-                    <input className='ps-3 mt-2 border rounded border-slate-400 h-12 w-full' type="password" name="password" required />
+                    <input className='ps-3 mt-2 border rounded border-slate-400 h-12 w-full' type="password" name="password" ref={passwordRef} required />
                 </div>
                 <div className='flex'>
-                    <label className='grow'>
-                        <input type="checkbox" />
+                    <label>
+                        <input onClick={handleShowPassword} type="checkbox" />
                         <span className='ms-2 text-xl'>
                             Show password
                         </span>
                     </label>
-                    <Link className='my-primary text-xl font-semibold'>Forgot password?</Link>
+                    <Link className='ms-auto my-primary text-xl font-semibold'>Forgot password?</Link>
                 </div>
                 <p className='mb-8 text-red-800'>{error}</p>
                 <input className='w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Login" />

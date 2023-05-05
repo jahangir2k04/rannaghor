@@ -3,21 +3,20 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className='px-2 py-4 md:px-24 md:py-10 bg-success text-success-content '>
+        <div className='px-2 py-4 md:px-24 md:py-10 bg-neutral text-neutral-content '>
             <footer className="footer ">
                 <div>
                     <span className="footer-title">Services</span>
-                    <a className="link link-hover">Branding</a>
-                    <a className="link link-hover">Design</a>
-                    <a className="link link-hover">Marketing</a>
-                    <a className="link link-hover">Advertisement</a>
+                    <a className="link link-hover text-base">Branding</a>
+                    <a className="link link-hover text-base">Design</a>
+                    <a className="link link-hover text-base">Marketing</a>
+                    <a className="link link-hover text-base">Advertisement</a>
                 </div>
                 <div>
                     <span className="footer-title">Company</span>
-                    <a className="link link-hover">About us</a>
-                    <a className="link link-hover">Contact</a>
-                    <a className="link link-hover">Jobs</a>
-                    <a className="link link-hover">Press kit</a>
+                    <a className="link link-hover text-base">About us</a>
+                    <a className="link link-hover text-base">Contact</a>
+                    <a className="link link-hover text-base">Jobs</a>
                 </div>
                 <div>
                     <span className="footer-title">Social</span>
@@ -34,7 +33,7 @@ const Footer = () => {
                 <img className='h-12 me-1' src="/logo.png" alt="" />
                 <p>
                     <span className=' text-red-600 text-lg'>Copyright © 2023 - All right reserved By</span>
-                    <Link className='my-primary text-xl font-bold' to='/'>  RannaGhor</Link>
+                    <Link className='text-xl font-bold' to='/'>  RannaGhor</Link>
                 </p>
             </div>
         </div>

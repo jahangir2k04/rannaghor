@@ -12,7 +12,7 @@ const Chefs = () => {
     }, []);
 
     return (
-        <div className='my-24 mx-2 md:mx-24 grid grid-cols-1 md:grid-cols-3 gap-10'>
+        <div className='mt-24 mx-2 md:mx-24 grid grid-cols-1 md:grid-cols-3 gap-10'>
             {
                 chefs.map(chef => <Chef
                 key={chef.chef_id}

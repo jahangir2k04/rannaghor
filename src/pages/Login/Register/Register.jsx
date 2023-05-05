@@ -74,24 +74,11 @@ const Register = () => {
                     </label>
                     <p className='mb-8 text-red-800'>{error}</p>
                 </div>
-                <input className='w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Register" disabled={!accepted} />
+                
+                <button className='btn normal-case hover:bg-green-700 w-full my-bg-primary rounded-lg h-12 text-white font-bold text-xl' type="submit" value="Register" disabled={!accepted}>Register</button>
             </form>
-            <div className='my-10 text-center grid grid-cols-3 items-center'>
-                <hr />
-                <p className='text-xl'>Or continue with</p>
-                <hr />
-            </div>
-            <div className='flex gap-5 mb-10'>
-                <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
-                    <img className='h-10' src="/google.png" alt="" />
-                    <button className='h-12 my-primary font-bold text-xl'>Google</button>
-                </Link>
-                <Link className='flex gap-2 md:gap-5 justify-center items-center w-full border border-lime-700 rounded-lg'>
-                    <img className='h-10' src="/github.png" alt="" />
-                    <button className='h-12 my-primary font-bold text-xl'>Github</button>
-                </Link>
-            </div>
-            <p className='text-center text-xl'>
+           
+            <p className='mt-6 text-center text-xl'>
                 Already Have An Account? <Link to='/login' className='my-primary font-bold'> Login</Link>
             </p>
         </div>
